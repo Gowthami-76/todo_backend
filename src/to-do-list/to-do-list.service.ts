@@ -37,6 +37,9 @@ export class ToDoListService {
     try {
       const toDoList = await this.toDoListModel.aggregate([
         {
+          $match: { userId: params.userId },
+        },
+        {
           $lookup: {
             from: 'users',
             localField: 'userId',
